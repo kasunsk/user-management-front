@@ -5,3 +5,7 @@ a {
 .help-block {
   font-size: 12px;
 }
+
+label {
+  font-size: 50px;
+}
