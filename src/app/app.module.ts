@@ -14,6 +14,7 @@ import { LoginComponent } from './login/index';
 import { HomeComponent } from './home/index';
 import {AlertService} from "./_services/alert.service";
 import {FormsModule} from "@angular/forms";
+import {AdminComponent} from "./admin/admin.component";
 
 
 
@@ -22,6 +23,7 @@ import {FormsModule} from "@angular/forms";
     AppComponent,
     HomeComponent,
     LoginComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,

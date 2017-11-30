@@ -19,10 +19,17 @@ export class AuthenticationService {
     }), this.options)
       .map((response: Response) => {
         // login successful if there's a jwt token in the response
-        let user = response.json();
-        if (user && user.token) {
+        let loginResponse = response.json();
+        if (loginResponse && loginResponse.user && loginResponse.token) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem('currentUser', JSON.stringify(user));
+          localStorage.setItem('currentUser', JSON.stringify(loginResponse.user));
+          localStorage.setItem('userToken', JSON.stringify(loginResponse.token));
+        }
+
+        if (loginResponse && loginResponse.tenantParam && loginResponse.token) {
+          // store user details and jwt token in local storage to keep user logged in between page refreshes
+          localStorage.setItem('currentTenant', JSON.stringify(loginResponse.tenantParam));
+          localStorage.setItem('userToken', JSON.stringify(loginResponse.token));
         }
       });
   }
@@ -30,5 +37,6 @@ export class AuthenticationService {
   logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
+    localStorage.removeItem('currentTenant');
   }
 }
