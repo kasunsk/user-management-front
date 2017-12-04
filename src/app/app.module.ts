@@ -15,6 +15,7 @@ import { HomeComponent } from './home/index';
 import { AlertService } from "./_services/alert.service";
 import { FormsModule } from "@angular/forms";
 import { AdminComponent } from "./admin/admin.component";
+import {AlertComponent} from "./_directives/alert.component";
 
 
 
@@ -24,6 +25,7 @@ import { AdminComponent } from "./admin/admin.component";
     HomeComponent,
     LoginComponent,
     AdminComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,16 @@
 <div class="col-md-6 col-md-offset-3">
   <h1>Admin</h1>
   <h1>Hi {{currentTenant.tenantName}}!</h1>
+  <h2>Tenant Code : {{currentTenant.tenantCode}}</h2>
+  <h2>Email : {{currentTenant.email}}</h2>
   <p>You're logged in with user management system</p>
+
+  <h3>All registered users:</h3>
+  <ul>
+  <li *ngFor="let user of users">
+  {{user.username}} ({{user.firstName}} {{user.middleName}} {{user.lastName}}) {{user.email}}
+   - <a (click)="deleteUser(user.id)">Delete</a>
+  </li>
+  </ul>
   <p><a [routerLink]="['/login']">Logout</a></p>
 </div>

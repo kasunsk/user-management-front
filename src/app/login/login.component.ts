@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
     this.authenticationService.logout();
 
     // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
   }
 
   login() {
@@ -38,11 +38,13 @@ export class LoginComponent implements OnInit {
           let currentUser = localStorage.getItem('currentUser');
           let currentTenant = localStorage.getItem('currentTenant');
 
+          this.alertService.success("Login Success", true);
+
           if (currentUser) {
             this.router.navigate([this.returnUrl]);
           }
 
-          if(currentTenant) {
+          if (currentTenant) {
             this.router.navigate(['/admin']);
           }
         },
