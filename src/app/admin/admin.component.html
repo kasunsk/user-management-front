@@ -20,10 +20,10 @@
       <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
     </div>
 
-    <div class="form-group" [ngClass]="{ 'has-error': f.submitted }">
+    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
       <label for="password">Password</label>
       <input id="password" type="password" class="form-control" name="password" [(ngModel)]="model.password" #username="ngModel" required />
-      <div *ngIf="f.submitted" class="help-block">Password is required</div>
+      <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
     </div>
 
     <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !firstName.valid }">

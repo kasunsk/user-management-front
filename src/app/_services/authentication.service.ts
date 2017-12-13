@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Headers, Http, RequestOptions, Response} from '@angular/http';
 import 'rxjs/add/operator/map'
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class AuthenticationService {
@@ -13,7 +14,7 @@ export class AuthenticationService {
 
   login(username: string, password: string) {
 
-    return this.http.post('http://localhost:8080/auth/login', JSON.stringify({
+    return this.http.post(environment.api_url + '/auth/login', JSON.stringify({
       "username": username,
       "password": password
     }), this.options)
@@ -25,9 +26,9 @@ export class AuthenticationService {
           localStorage.setItem('currentUser', JSON.stringify(loginResponse.user));
         }
 
-        if (loginResponse && loginResponse.tenantParam && loginResponse.token) {
+        if (loginResponse && loginResponse.tenant && loginResponse.token) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem('currentTenant', JSON.stringify(loginResponse.tenantParam));
+          localStorage.setItem('currentTenant', JSON.stringify(loginResponse.tenant));
         }
 
         localStorage.setItem('userToken', JSON.stringify(loginResponse.token));
@@ -43,7 +44,7 @@ export class AuthenticationService {
 
     let user_token = localStorage.getItem('userToken');
 
-    return this.http.get('http://localhost:8080/auth/logout', this.jwt()).map((response: Response) => {
+    return this.http.get(environment.api_url + '/auth/logout', this.jwt()).map((response: Response) => {
       response.json();
       localStorage.removeItem('userToken');
     });
